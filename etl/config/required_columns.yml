@@ -1,0 +1,6 @@
+required_columns:
+  - sale_id
+  - sale_date
+  - sale_status
+  - quantity
+  - total_amount_ars

@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json
+
+# Streamlit
+.streamlit/
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Environment
+.env
+.env.*
+
+# Testing / cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local files
+*.log
+*.tmp
+
+# Data (MUY IMPORTANTE en tu caso)
+data/
+*.csv

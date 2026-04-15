@@ -1,0 +1,162 @@
+column_aliases:
+  sale_id:
+    - "# de venta"
+    - "nro de venta"
+    - "numero de venta"
+
+  sale_date:
+    - "fecha de venta"
+    - "fecha"
+
+  sale_status:
+    - "estado"
+
+  status_description:
+    - "descripcion del estado"
+
+  quantity:
+    - "unidades"
+    - "cantidad"
+
+  sku:
+    - "sku"
+
+  publication_id:
+    - "# de publicacion"
+    - "id de publicacion"
+    - "publicacion"
+
+  sales_channel:
+    - "canal de venta"
+
+  product_title:
+    - "titulo de la publicacion"
+    - "título de la publicación"
+
+  variant:
+    - "variante"
+
+  unit_price_ars:
+    - "precio unitario de venta de la publicacion (ars)"
+    - "precio unitario de venta de la publicación (ars)"
+    - "precio unitario (ars)"
+
+  invoice_status:
+    - "factura adjunta"
+
+  buyer_name:
+    - "comprador"
+    - "datos del comprador"
+
+  buyer_document:
+    - "dni"
+    - "documento"
+
+  buyer_city:
+    - "ciudad"
+
+  buyer_state:
+    - "estado comprador"
+    - "provincia"
+    - "estado"
+
+  buyer_zip_code:
+    - "codigo postal"
+    - "código postal"
+
+  buyer_country:
+    - "pais"
+    - "país"
+
+  delivery_type:
+    - "forma de entrega"
+
+  shipped_at:
+    - "fecha en camino"
+
+  delivered_at:
+    - "fecha entregado"
+
+  carrier:
+    - "transportista"
+
+  tracking_number:
+    - "numero de seguimiento"
+    - "número de seguimiento"
+
+  tracking_url:
+    - "url de seguimiento"
+
+  claim_open:
+    - "reclamo abierto"
+
+  claim_closed:
+    - "reclamo cerrado"
+
+  mediation_flag:
+    - "con mediacion"
+    - "con mediación"
+
+  product_revenue_ars:
+    - "ingresos por productos (ars)"
+    - "ingresos (ars)"
+
+  shipping_revenue_ars:
+    - "ingresos por envio (ars)"
+    - "ingresos por envío (ars)"
+
+  sale_fee_and_taxes_ars:
+    - "cargo por venta e impuestos"
+
+  sale_fee_ars:
+    - "cargo por venta"
+
+  fixed_cost_ars:
+    - "costo fijo"
+
+  installments_cost_ars:
+    - "costo por ofrecer cuotas"
+
+  shipping_cost_ars:
+    - "costos de envio"
+    - "costos de envío"
+    - "costos de envío (ars)"
+
+  shipping_declared_measure_cost_ars:
+    - "costo de envio basado en medidas y peso declarados"
+    - "costo de envío basado en medidas y peso declarados"
+
+  shipping_size_diff_charge_ars:
+    - "cargo por diferencias en medidas y peso del paquete"
+
+  taxes_ars:
+    - "impuestos"
+
+  discounts_ars:
+    - "descuentos y bonificaciones"
+
+  refund_amount_ars:
+    - "anulaciones y reembolsos (ars)"
+
+  total_amount_ars:
+    - "total (ars)"
+
+  billing_month:
+    - "mes de facturacion de tus cargos"
+    - "mes de facturación de tus cargos"
+
+  advertising_sale_flag:
+    - "venta por publicidad"
+
+  is_multi_product_pack:
+    - "paquete de varios productos"
+
+  belongs_to_kit:
+    - "pertenece a un kit"
+
+  has_installments:
+    - "tiene cuotas agregadas"
+
+  vat_condition:
+    - "condicion fiscal (iva)"
+    - "condición fiscal (iva)"

@@ -35,3 +35,6 @@ htmlcov/
 # Data (MUY IMPORTANTE en tu caso)
 data/
 *.csv
+
+# Sample data (permitidos)
+!data/sample/

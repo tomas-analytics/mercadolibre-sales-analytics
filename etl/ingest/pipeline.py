@@ -185,7 +185,7 @@ def print_pipeline_summary(pipeline_debug: dict[str, Any]) -> None:
 
 
 if __name__ == "__main__":
-    SAMPLE_FILE_PATH = "20260412_Ventas_AR_Mercado_Libre_y_Mercado_Shops_2026-04-12_17-10hs_171360540.xlsx"
+    SAMPLE_FILE_PATH = "data/raw/20260412_Ventas_AR_Mercado_Libre_y_Mercado_Shops_2026-04-12_17-10hs_171360540.xlsx"
 
     final_df, pipeline_debug = run_ingestion_pipeline(
         file_path=SAMPLE_FILE_PATH,

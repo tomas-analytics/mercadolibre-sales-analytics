@@ -10,22 +10,46 @@ schema:
   product_title: string
   variant: string
   unit_price_ars: float64
+
   invoice_status: string
+  invoice_person_type: string
+  invoice_document_type_number: string
+  invoice_address: string
+  vat_condition: string
+
   buyer_name: string
   buyer_document: string
+  buyer_address: string
   buyer_city: string
   buyer_state: string
   buyer_zip_code: string
   buyer_country: string
+
   delivery_type: string
   shipped_at: datetime
   delivered_at: datetime
   carrier: string
   tracking_number: string
   tracking_url: string
+
+  return_quantity: int64
+  return_delivery_type: string
+  return_shipped_at: datetime
+  return_delivered_at: datetime
+  return_carrier: string
+  return_tracking_number: string
+  return_tracking_url: string
+  return_reviewed_by_ml: string
+  return_reviewed_at: datetime
+  return_credit_amount_ars: float64
+  return_result: string
+  return_destination: string
+  return_result_reason: string
+
   claim_open: string
   claim_closed: string
   mediation_flag: string
+
   product_revenue_ars: float64
   shipping_revenue_ars: float64
   sale_fee_and_taxes_ars: float64
@@ -44,7 +68,7 @@ schema:
   is_multi_product_pack: string
   belongs_to_kit: string
   has_installments: string
-  vat_condition: string
+
   load_id: string
   session_load_id: string
   file_name: string

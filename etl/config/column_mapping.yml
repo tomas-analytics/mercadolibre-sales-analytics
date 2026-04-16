@@ -3,160 +3,286 @@ column_aliases:
     - "# de venta"
     - "nro de venta"
     - "numero de venta"
+    - "ventas # de venta"
 
   sale_date:
     - "fecha de venta"
     - "fecha"
+    - "ventas fecha de venta"
 
   sale_status:
-    - "estado"
+    - "estado de la venta"
+    - "ventas estado"
 
   status_description:
     - "descripcion del estado"
+    - "descripción del estado"
+    - "ventas descripcion del estado"
+    - "ventas descripción del estado"
 
   quantity:
-    - "unidades"
     - "cantidad"
+    - "unidades"
+    - "ventas unidades"
 
   sku:
     - "sku"
+    - "publicaciones sku"
 
   publication_id:
     - "# de publicacion"
     - "id de publicacion"
     - "publicacion"
+    - "publicaciones # de publicacion"
 
   sales_channel:
     - "canal de venta"
+    - "publicaciones canal de venta"
 
   product_title:
     - "titulo de la publicacion"
     - "título de la publicación"
+    - "publicaciones titulo de la publicacion"
+    - "publicaciones título de la publicación"
 
   variant:
     - "variante"
+    - "publicaciones variante"
 
   unit_price_ars:
     - "precio unitario de venta de la publicacion (ars)"
     - "precio unitario de venta de la publicación (ars)"
     - "precio unitario (ars)"
+    - "publicaciones precio unitario de venta de la publicacion (ars)"
+    - "publicaciones precio unitario de venta de la publicación (ars)"
 
   invoice_status:
     - "factura adjunta"
+    - "facturacion al comprador factura adjunta"
+    - "facturación al comprador factura adjunta"
+
+  invoice_person_type:
+    - "facturacion al comprador datos personales o de empresa"
+    - "facturación al comprador datos personales o de empresa"
+
+  invoice_document_type_number:
+    - "facturacion al comprador tipo y numero de documento"
+    - "facturacion al comprador tipo y número de documento"
+    - "facturación al comprador tipo y numero de documento"
+    - "facturación al comprador tipo y número de documento"
+
+  invoice_address:
+    - "facturacion al comprador direccion"
+    - "facturación al comprador direccion"
+    - "facturacion al comprador dirección"
+    - "facturación al comprador dirección"
+
+  vat_condition:
+    - "condicion fiscal (iva)"
+    - "condición fiscal (iva)"
+    - "facturacion al comprador condicion fiscal (iva)"
+    - "facturación al comprador condición fiscal (iva)"
 
   buyer_name:
     - "comprador"
     - "datos del comprador"
+    - "compradores comprador"
 
   buyer_document:
     - "dni"
     - "documento"
+    - "compradores dni"
+
+  buyer_address:
+    - "compradores domicilio"
+    - "domicilio"
 
   buyer_city:
     - "ciudad"
+    - "compradores ciudad"
 
   buyer_state:
     - "estado comprador"
     - "provincia"
-    - "estado"
+    - "compradores estado"
 
   buyer_zip_code:
     - "codigo postal"
     - "código postal"
+    - "compradores codigo postal"
+    - "compradores código postal"
 
   buyer_country:
     - "pais"
     - "país"
+    - "compradores pais"
+    - "compradores país"
 
   delivery_type:
     - "forma de entrega"
+    - "envios forma de entrega"
+    - "envíos forma de entrega"
 
   shipped_at:
     - "fecha en camino"
+    - "envios fecha en camino"
+    - "envíos fecha en camino"
 
   delivered_at:
     - "fecha entregado"
+    - "envios fecha entregado"
+    - "envíos fecha entregado"
 
   carrier:
     - "transportista"
+    - "envios transportista"
+    - "envíos transportista"
 
   tracking_number:
     - "numero de seguimiento"
     - "número de seguimiento"
+    - "envios numero de seguimiento"
+    - "envios número de seguimiento"
+    - "envíos numero de seguimiento"
+    - "envíos número de seguimiento"
 
   tracking_url:
     - "url de seguimiento"
+    - "envios url de seguimiento"
+    - "envíos url de seguimiento"
+
+  return_quantity:
+    - "devoluciones unidades"
+
+  return_delivery_type:
+    - "devoluciones forma de entrega"
+
+  return_shipped_at:
+    - "devoluciones fecha en camino"
+
+  return_delivered_at:
+    - "devoluciones fecha entregado"
+
+  return_carrier:
+    - "devoluciones transportista"
+
+  return_tracking_number:
+    - "devoluciones numero de seguimiento"
+    - "devoluciones número de seguimiento"
+
+  return_tracking_url:
+    - "devoluciones url de seguimiento"
+
+  return_reviewed_by_ml:
+    - "devoluciones revisado por mercado libre"
+
+  return_reviewed_at:
+    - "devoluciones fecha de revision"
+    - "devoluciones fecha de revisión"
+
+  return_credit_amount_ars:
+    - "devoluciones dinero a favor"
+
+  return_result:
+    - "devoluciones resultado"
+
+  return_destination:
+    - "devoluciones destino"
+
+  return_result_reason:
+    - "devoluciones motivo del resultado"
 
   claim_open:
     - "reclamo abierto"
+    - "reclamos reclamo abierto"
 
   claim_closed:
     - "reclamo cerrado"
+    - "reclamos reclamo cerrado"
 
   mediation_flag:
     - "con mediacion"
     - "con mediación"
+    - "reclamos con mediacion"
+    - "reclamos con mediación"
 
   product_revenue_ars:
     - "ingresos por productos (ars)"
     - "ingresos (ars)"
+    - "ventas ingresos por productos (ars)"
 
   shipping_revenue_ars:
     - "ingresos por envio (ars)"
     - "ingresos por envío (ars)"
+    - "ventas ingresos por envio (ars)"
+    - "ventas ingresos por envío (ars)"
 
   sale_fee_and_taxes_ars:
     - "cargo por venta e impuestos"
 
   sale_fee_ars:
     - "cargo por venta"
+    - "ventas cargo por venta"
 
   fixed_cost_ars:
     - "costo fijo"
+    - "ventas costo fijo"
 
   installments_cost_ars:
     - "costo por ofrecer cuotas"
+    - "ventas costo por ofrecer cuotas"
 
   shipping_cost_ars:
     - "costos de envio"
     - "costos de envío"
     - "costos de envío (ars)"
+    - "ventas costos de envio (ars)"
+    - "ventas costos de envío (ars)"
 
   shipping_declared_measure_cost_ars:
     - "costo de envio basado en medidas y peso declarados"
     - "costo de envío basado en medidas y peso declarados"
+    - "ventas costo de envio basado en medidas y peso declarados"
+    - "ventas costo de envío basado en medidas y peso declarados"
 
   shipping_size_diff_charge_ars:
     - "cargo por diferencias en medidas y peso del paquete"
+    - "ventas cargo por diferencias en medidas y peso del paquete"
 
   taxes_ars:
     - "impuestos"
+    - "ventas impuestos"
 
   discounts_ars:
     - "descuentos y bonificaciones"
+    - "ventas descuentos y bonificaciones"
 
   refund_amount_ars:
     - "anulaciones y reembolsos (ars)"
+    - "ventas anulaciones y reembolsos (ars)"
 
   total_amount_ars:
     - "total (ars)"
+    - "ventas total (ars)"
 
   billing_month:
     - "mes de facturacion de tus cargos"
     - "mes de facturación de tus cargos"
+    - "ventas mes de facturacion de tus cargos"
+    - "ventas mes de facturación de tus cargos"
 
   advertising_sale_flag:
     - "venta por publicidad"
+    - "publicidad venta por publicidad"
 
   is_multi_product_pack:
     - "paquete de varios productos"
+    - "ventas paquete de varios productos"
 
   belongs_to_kit:
     - "pertenece a un kit"
+    - "ventas pertenece a un kit"
 
   has_installments:
     - "tiene cuotas agregadas"
-
-  vat_condition:
-    - "condicion fiscal (iva)"
-    - "condición fiscal (iva)"
+    - "publicaciones tiene cuotas agregadas"

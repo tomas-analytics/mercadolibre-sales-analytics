@@ -5,6 +5,8 @@ from typing import Any
 
 import pandas as pd
 
+from etl.ingest.add_load_metadata import add_load_metadata
+from etl.ingest.load_to_bigquery import load_dataframe_to_bigquery_raw
 from etl.ingest.read_excel import read_excel_file
 from etl.ingest.standardize_types import standardize_types
 from etl.ingest.validate_schema import validate_schema
@@ -30,7 +32,7 @@ def save_processed_output(
     df: pd.DataFrame,
     file_path: str | Path,
     output_dir: str | Path = "data/processed",
-) -> dict[str, str]:
+) -> dict[str, str | bool | None]:
     """
     Save processed dataframe locally.
 
@@ -67,6 +69,13 @@ def run_ingestion_pipeline(
     schema_definition_path: str | Path = "etl/config/schema_definition.yml",
     save_output: bool = True,
     output_dir: str | Path = "data/processed",
+    session_load_id: str | None = None,
+    load_bigquery: bool = False,
+    gcp_project_id: str | None = None,
+    bigquery_dataset_id: str = "raw",
+    bigquery_target_table_name: str = "mercadolibre_sales",
+    bigquery_staging_table_name: str = "mercadolibre_sales_load",
+    bigquery_location: str = "US",
 ) -> tuple[pd.DataFrame, dict[str, Any]]:
     """
     Execute the ingestion pipeline end-to-end.
@@ -76,9 +85,11 @@ def run_ingestion_pipeline(
     2. Detect header row
     3. Rebuild dataframe from detected header
     4. Map source columns to internal standard columns
-    5. Validate schema
-    6. Standardize data types
-    7. Optionally save processed output locally
+    5. Validate required/schema consistency
+    6. Standardize business column data types
+    7. Add technical load metadata
+    8. Optionally save processed output locally
+    9. Optionally load into BigQuery raw layer
     """
     file_path = Path(file_path)
 
@@ -100,12 +111,35 @@ def run_ingestion_pipeline(
         schema_definition_path=schema_definition_path,
     )
 
+    enriched_df, metadata_debug = add_load_metadata(
+        df=standardized_df,
+        file_path=file_path,
+        read_debug=read_debug,
+        session_load_id=session_load_id,
+    )
+
     output_debug = None
     if save_output:
         output_debug = save_processed_output(
-            df=standardized_df,
+            df=enriched_df,
             file_path=file_path,
             output_dir=output_dir,
+        )
+
+    bigquery_debug = None
+    if load_bigquery:
+        if not gcp_project_id:
+            raise ValueError("gcp_project_id is required when load_bigquery=True")
+
+        bigquery_debug = load_dataframe_to_bigquery_raw(
+            df=enriched_df,
+            project_id=gcp_project_id,
+            dataset_id=bigquery_dataset_id,
+            target_table_name=bigquery_target_table_name,
+            staging_table_name=bigquery_staging_table_name,
+            schema_definition_path=schema_definition_path,
+            unique_key="sale_id",
+            location=bigquery_location,
         )
 
     pipeline_debug = {
@@ -114,12 +148,14 @@ def run_ingestion_pipeline(
         "read_step": read_debug,
         "validation_step": validation_debug,
         "standardization_step": standardization_debug,
+        "metadata_step": metadata_debug,
         "output_step": output_debug,
-        "final_shape": standardized_df.shape,
-        "final_columns": list(standardized_df.columns),
+        "bigquery_step": bigquery_debug,
+        "final_shape": enriched_df.shape,
+        "final_columns": list(enriched_df.columns),
     }
 
-    return standardized_df, pipeline_debug
+    return enriched_df, pipeline_debug
 
 
 def print_pipeline_summary(pipeline_debug: dict[str, Any]) -> None:
@@ -171,6 +207,11 @@ def print_pipeline_summary(pipeline_debug: dict[str, Any]) -> None:
         for column, error in standardization_info["conversion_errors"].items():
             print(f"  - {column}: {error}")
 
+    metadata_info = pipeline_debug["metadata_step"]
+    print(f"Load ID: {metadata_info['load_id']}")
+    print(f"Session load ID: {metadata_info['session_load_id']}")
+    print(f"File hash: {metadata_info['file_hash']}")
+
     output_info = pipeline_debug.get("output_step")
     if output_info:
         print(f"CSV saved to: {output_info['csv_path']}")
@@ -181,17 +222,42 @@ def print_pipeline_summary(pipeline_debug: dict[str, Any]) -> None:
             if output_info["parquet_error"]:
                 print(f"Parquet error: {output_info['parquet_error']}")
 
+    bigquery_info = pipeline_debug.get("bigquery_step")
+    if bigquery_info:
+        print(f"BigQuery target table: {bigquery_info['target_table']}")
+        print(f"Rows in file: {bigquery_info['rows_in_file']}")
+        print(
+            f"Duplicate rows inside file: "
+            f"{bigquery_info['duplicate_rows_inside_file']}"
+        )
+        print(
+            f"Rows after internal dedup: "
+            f"{bigquery_info['rows_after_internal_dedup']}"
+        )
+        print(f"Rows already existing: {bigquery_info['rows_already_existing']}")
+        print(f"Rows inserted: {bigquery_info['rows_inserted']}")
+
     print("=" * 60 + "\n")
 
 
 if __name__ == "__main__":
-    SAMPLE_FILE_PATH = "data/raw/20260412_Ventas_AR_Mercado_Libre_y_Mercado_Shops_2026-04-12_17-10hs_171360540.xlsx"
+    SAMPLE_FILE_PATH = (
+        "data/raw/"
+        "20260412_Ventas_AR_Mercado_Libre_y_Mercado_Shops_"
+        "2026-04-12_17-10hs_171360540.xlsx"
+    )
 
     final_df, pipeline_debug = run_ingestion_pipeline(
         file_path=SAMPLE_FILE_PATH,
         sheet_name=0,
         save_output=True,
         output_dir="data/processed",
+        load_bigquery=True,
+        gcp_project_id="mercadolibre-sales-analytics",
+        bigquery_dataset_id="raw",
+        bigquery_target_table_name="mercadolibre_sales",
+        bigquery_staging_table_name="mercadolibre_sales_load",
+        bigquery_location="US",
     )
 
     print_pipeline_summary(pipeline_debug)
